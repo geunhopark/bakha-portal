@@ -2,8 +2,6 @@ logging:
   level:
     root: info
 spring:
-  profiles:
-    include: oauth
   jpa:
     show_sql: true
     properties:
@@ -14,7 +12,13 @@ spring:
       enabled: true
   session:
     store-type: jdbc
-    jdbc:
-      initialize-schema: embedded
-      schema: 'classpath:org/springframework/session/jdbc/schema-mysql.sql'
-      table-name: SPRING_SESSION
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: test
+            client-secret: test
+            scope:
+              - profile
+              - email
